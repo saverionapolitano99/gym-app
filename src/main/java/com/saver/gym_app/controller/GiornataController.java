@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.saver.gym_app.entity.Giornata;
-import com.saver.gym_app.repository.GiornataRepository;
+import com.saver.gym_app.service.GiornataService;
 
 import lombok.AllArgsConstructor;
 
@@ -19,20 +19,20 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/api/giornate")
 public class GiornataController {
 
-    private final GiornataRepository repository;
+    private final GiornataService service;
     @GetMapping
     public List<Giornata> getGiornate(){
-        return repository.findAll();
+        return service.getGiornate();
     }
 
     @GetMapping("/{id}")
     public Giornata getGiornataById(@PathVariable Long id){
-        return repository.findById(id).orElseThrow();
+        return service.getGiornataById(id);
     }
 
     @PostMapping
     public Giornata setGiornata(@RequestBody Giornata giornata){
-        return repository.save(giornata);
+        return service.setGiornata(giornata);
     }
 
 

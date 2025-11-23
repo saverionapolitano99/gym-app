@@ -10,34 +10,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.saver.gym_app.entity.Esercizio;
-import com.saver.gym_app.repository.EsercizioRepository;
+import com.saver.gym_app.service.EsercizioService;
+
+import lombok.AllArgsConstructor;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/esercizi")
 public class EsercizioController {
     
-    private final EsercizioRepository repository;
+    private final EsercizioService service;
     
-    // Constructor Injection (il modo migliore)
-    public EsercizioController(EsercizioRepository repository) {
-        this.repository = repository;
-    }
     
     // GET /api/esercizi - Ritorna tutti gli esercizi
     @GetMapping
     public List<Esercizio> getAll() {
-        return repository.findAll();
+        return service.getAll();
     }
     
     // GET /api/esercizi/{id} - Ritorna un esercizio per ID
     @GetMapping("/{id}")
     public Esercizio getById(@PathVariable Long id) {
-        return repository.findById(id).orElseThrow();
+        return service.getById(id);
     }
     
     // POST /api/esercizi - Crea un nuovo esercizio
     @PostMapping
     public Esercizio create(@RequestBody Esercizio esercizio) {
-        return repository.save(esercizio);
+        return service.create(esercizio);
     }
 }

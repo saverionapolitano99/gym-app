@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.saver.gym_app.entity.Scheda;
-import com.saver.gym_app.repository.SchedaRepository;
+import com.saver.gym_app.service.SchedaService;
 
 import lombok.AllArgsConstructor;
 
@@ -19,20 +19,20 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/api/schede")
 public class SchedaController {
 
-    private final SchedaRepository repository;
+    private final SchedaService service;
     @GetMapping
     public List<Scheda> getSchede(){
-        return repository.findAll();
+        return service.getSchede();
     }
 
     @GetMapping("/{id}")
     public Scheda getSchedaById(@PathVariable Long id){
-        return repository.findById(id).orElseThrow();
+        return service.getSchedaById(id);
     }
 
     @PostMapping("create")
     public Scheda setSchedaBy(@RequestBody Scheda scheda){
-        return repository.save(scheda);
+        return service.setSchedaBy(scheda);
     }
 
 
