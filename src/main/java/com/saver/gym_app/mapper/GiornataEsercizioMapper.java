@@ -6,7 +6,8 @@ import org.mapstruct.Mapping;
 import com.saver.gym_app.dto.GiornataEsercizioResponse;
 import com.saver.gym_app.entity.GiornataEsercizio;
 
-@Mapper
+
+@Mapper(componentModel = "spring")
 public interface GiornataEsercizioMapper {
 
      // Entity → Response
