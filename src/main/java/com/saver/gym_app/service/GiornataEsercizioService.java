@@ -1,6 +1,7 @@
 package com.saver.gym_app.service;
 
-import org.apache.catalina.mapper.Mapper;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.saver.gym_app.dto.CreaGiornataEsercizioRequest;
@@ -24,7 +25,7 @@ public class GiornataEsercizioService {
     private final EsercizioRepository repositoryEsercizio;
     private final GiornataEsercizioMapper mapper;
 
-    public GiornataEsercizioResponse creaGiornata(CreaGiornataEsercizioRequest request){
+    public GiornataEsercizioResponse create(CreaGiornataEsercizioRequest request){
            
            Giornata giornata= repositoryGiornata.findById(request.getGiornataId()).orElseThrow();
            Esercizio esercizio = repositoryEsercizio.findById(request.getEsercizioId()).orElseThrow();
@@ -40,5 +41,14 @@ public class GiornataEsercizioService {
            .build());
 
         return mapper.toResponse(giornataEsercizio);
+    }
+
+
+    public List<GiornataEsercizioResponse> getAll() {
+        return repository.findAll()
+                .stream()
+                .map(mapper::toResponse)
+                .toList();
+
     }
 }
