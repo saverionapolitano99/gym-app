@@ -1,4 +1,4 @@
-package com.saver.gym_app.dto;
+package com.saver.gym_app.dto.giornataesercizio;
 
 import lombok.Data;
 

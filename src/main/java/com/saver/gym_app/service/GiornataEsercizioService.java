@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.saver.gym_app.dto.CreaGiornataEsercizioRequest;
-import com.saver.gym_app.dto.GiornataEsercizioResponse;
+import com.saver.gym_app.dto.giornataesercizio.CreaGiornataEsercizioRequest;
+import com.saver.gym_app.dto.giornataesercizio.GiornataEsercizioResponse;
 import com.saver.gym_app.entity.Esercizio;
 import com.saver.gym_app.entity.Giornata;
 import com.saver.gym_app.entity.GiornataEsercizio;

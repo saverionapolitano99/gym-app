@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.saver.gym_app.dto.esercizio.EsercizioRequest;
+import com.saver.gym_app.dto.esercizio.EsercizioResponse;
 import com.saver.gym_app.entity.Esercizio;
+import com.saver.gym_app.mapper.EsercizioMapper;
 import com.saver.gym_app.service.EsercizioService;
 
 import lombok.AllArgsConstructor;
@@ -20,7 +23,7 @@ import lombok.AllArgsConstructor;
 public class EsercizioController {
     
     private final EsercizioService service;
-    
+    private final EsercizioMapper mapper;
     
     // GET /api/esercizi - Ritorna tutti gli esercizi
     @GetMapping
@@ -36,7 +39,10 @@ public class EsercizioController {
     
     // POST /api/esercizi - Crea un nuovo esercizio
     @PostMapping
-    public Esercizio create(@RequestBody Esercizio esercizio) {
-        return service.create(esercizio);
+    public EsercizioResponse create(@RequestBody EsercizioRequest esercizio) {
+
+       Esercizio esercizioResponse = service.create(mapper.toFilter(esercizio));
+
+        return mapper.toResponse(esercizioResponse);
     }
 }

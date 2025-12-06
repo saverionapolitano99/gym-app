@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.saver.gym_app.dto.scheda.SchedaRequest;
 import com.saver.gym_app.entity.Scheda;
+import com.saver.gym_app.mapper.SchedaMapper;
 import com.saver.gym_app.service.SchedaService;
 
 import lombok.AllArgsConstructor;
@@ -20,6 +22,7 @@ import lombok.AllArgsConstructor;
 public class SchedaController {
 
     private final SchedaService service;
+    private final SchedaMapper mapper;
     @GetMapping
     public List<Scheda> getSchede(){
         return service.getSchede();
@@ -31,8 +34,11 @@ public class SchedaController {
     }
 
     @PostMapping("create")
-    public Scheda setSchedaBy(@RequestBody Scheda scheda){
-        return service.setSchedaBy(scheda);
+    public Long setSchedaBy(@RequestBody SchedaRequest scheda){
+
+        Scheda schedaResponse = service.setSchedaBy(mapper.toFilter(scheda));
+
+        return schedaResponse.getId();
     }
 
 

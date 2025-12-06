@@ -5,8 +5,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.saver.gym_app.dto.CreaGiornataEsercizioRequest;
-import com.saver.gym_app.dto.GiornataEsercizioResponse;
+import com.saver.gym_app.dto.giornataesercizio.CreaGiornataEsercizioRequest;
+import com.saver.gym_app.dto.giornataesercizio.GiornataEsercizioResponse;
+import com.saver.gym_app.mapper.GiornataEsercizioMapper;
 import com.saver.gym_app.service.GiornataEsercizioService;
 
 import lombok.AllArgsConstructor;

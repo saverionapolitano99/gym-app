@@ -3,7 +3,8 @@ package com.saver.gym_app.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import com.saver.gym_app.dto.GiornataEsercizioResponse;
+import com.saver.gym_app.dto.giornataesercizio.CreaGiornataEsercizioRequest;
+import com.saver.gym_app.dto.giornataesercizio.GiornataEsercizioResponse;
 import com.saver.gym_app.entity.GiornataEsercizio;
 
 
@@ -16,4 +17,7 @@ public interface GiornataEsercizioMapper {
     @Mapping(source = "esercizio.id", target = "esercizioId")
     @Mapping(source = "esercizio.nome", target = "esercizioNome")
     GiornataEsercizioResponse toResponse(GiornataEsercizio entity);
+
+    
+
 }
