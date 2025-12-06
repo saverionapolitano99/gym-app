@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.saver.gym_app.dto.giornata.GiornataRequest;
+import com.saver.gym_app.dto.giornata.GiornataResponse;
 import com.saver.gym_app.entity.Giornata;
+import com.saver.gym_app.mapper.GiornataMapper;
 import com.saver.gym_app.service.GiornataService;
 
 import lombok.AllArgsConstructor;
@@ -20,6 +23,7 @@ import lombok.AllArgsConstructor;
 public class GiornataController {
 
     private final GiornataService service;
+    private final GiornataMapper mapper;
     @GetMapping
     public List<Giornata> getGiornate(){
         return service.getGiornate();
@@ -31,8 +35,9 @@ public class GiornataController {
     }
 
     @PostMapping
-    public Giornata setGiornata(@RequestBody Giornata giornata){
-        return service.setGiornata(giornata);
+    public GiornataResponse setGiornata(@RequestBody GiornataRequest giornata){
+        Giornata giornataResp = service.setGiornata(mapper.toFilter(giornata));
+        return mapper.toResponse(giornataResp);
     }
 
 

@@ -9,11 +9,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "giornate_esercizio")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class GiornataEsercizio {
     
     @Id
@@ -27,6 +33,10 @@ public class GiornataEsercizio {
     @Column(nullable = false)
     private Double recupero;
 
+    @Column(nullable = false)
+    private Double pesoTarget;
+    @Column(nullable = false)
+    private Integer ordine;
     @ManyToOne
     @JoinColumn(name="giornata_id", nullable=false)
     Giornata giornata;
